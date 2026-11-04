@@ -3,103 +3,111 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Usage Demo：同一段提示詞，不同模型做出的網站</title>
-  <style>
-    body {
-      margin: 0; background: #f7f5f0; color: #2f2c28;
-      font: 16px/1.7 system-ui, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-    }
-    main { max-width: 960px; margin: 0 auto; padding: 48px 20px 80px; }
-    h1 { font-size: 1.9rem; margin: 0 0 8px; }
-    .lead { color: #6b655c; margin: 0 0 32px; }
-    h2 { font-size: 1.25rem; margin: 40px 0 16px; }
-    .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-    .card {
-      background: #fff; border-radius: 16px; padding: 20px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, .05); display: flex; flex-direction: column;
-    }
-    .card h3 { margin: 0 0 4px; font-size: 1.1rem; }
-    .card .tool { color: #8a847c; font-size: .9rem; margin-bottom: 12px; }
-    .card dl { margin: 0 0 16px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: .92rem; }
-    .card dt { color: #8a847c; }
-    .card dd { margin: 0; }
-    .card .links { margin-top: auto; display: flex; gap: 10px; }
-    .btn {
-      display: inline-block; padding: 8px 16px; border-radius: 99px; text-decoration: none;
-      background: #4f7a5a; color: #fff; font-size: .92rem;
-    }
-    .btn.ghost { background: transparent; color: #4f7a5a; border: 1px solid #4f7a5a; }
-    .card.pending { opacity: .6; }
-    details { background: #fff; border-radius: 16px; padding: 16px 20px; }
-    summary { cursor: pointer; font-weight: bold; }
-    pre { white-space: pre-wrap; background: #f7f5f0; padding: 16px; border-radius: 12px; font-size: .9rem; }
-    footer { margin-top: 48px; color: #8a847c; font-size: .9rem; }
-    footer a { color: inherit; }
-  </style>
+  <title>一段話，做出一個網站｜AI Usage Demo</title>
+  <meta name="description" content="同一段提示詞，交給 Claude Code、Codex、Antigravity，比較它們做出的網站。" />
+  <link rel="stylesheet" href="assets/slides.css" />
 </head>
 <body>
-  <main>
-    <h1>同一段提示詞，不同 AI 做出的網站</h1>
-    <p class="lead">用一般人說話的方式描述需求，交給不同的 AI coding 工具，看看它們各自做出什麼。<br>範例：心理諮商診所的線上預約網站。</p>
+  <nav class="dots" id="dots" aria-label="頁面導覽"></nav>
 
-    <h2>成果比較</h2>
-    <div class="cards">
-      <article class="card">
-        <h3>claude-sonnet-5-5</h3>
-        <div class="tool">Claude Code</div>
-        <dl>
-          <dt>耗時</dt><dd>3 分 21 秒</dd>
-          <dt>自我檢查</dt><dd>無（沒有執行權限）</dd>
-          <dt>獨立驗證</dt><dd>8 / 8 通過</dd>
-        </dl>
-        <div class="links">
-          <a class="btn" href="results/clinic-booking/claude-sonnet-5-5/">開啟網站</a>
-          <a class="btn ghost" href="https://github.com/cxyfer/ai-usage-demo/blob/main/results/clinic-booking/claude-sonnet-5-5.md">執行紀錄</a>
+  <main id="deck">
+    <!-- 1. 封面 -->
+    <section class="slide cover" id="s-cover" data-title="封面">
+      <div class="wrap">
+        <p class="kicker">AI Usage Demo</p>
+        <h1>一段話，<br />做出一個網站</h1>
+        <p class="lead">不用寫程式，用平常說話的方式描述需求。<br />同一段提示詞，交給三種 AI coding 工具，看看它們各自做出什麼。</p>
+        <a class="scroll-hint" href="#s-how">往下看 <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <!-- 2. 流程 -->
+    <section class="slide" id="s-how" data-title="怎麼做">
+      <div class="wrap">
+        <p class="kicker">01 · 怎麼做</p>
+        <h2>只要三個步驟</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-icon" aria-hidden="true">✍️</span>
+            <h3>用說話的方式寫需求</h3>
+            <p>誰會用、要做什麼、想要什麼感覺。不需要任何技術名詞。</p>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">🤖</span>
+            <h3>貼給 AI coding 工具</h3>
+            <p>在一個空資料夾裡打開 Claude Code、Codex 或 Antigravity，把需求貼進去。</p>
+          </li>
+          <li>
+            <span class="step-icon" aria-hidden="true">🌐</span>
+            <h3>打開網頁就能用</h3>
+            <p>幾分鐘後，雙擊 <code>index.html</code>，網站就出現在瀏覽器裡。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3. 提示詞 -->
+    <section class="slide" id="s-prompt" data-title="提示詞">
+      <div class="wrap prompt-layout">
+        <div>
+          <p class="kicker">02 · 提示詞</p>
+          <h2>這次用的就是這段話</h2>
+          <ul class="notes">
+            <li><b>沒有技術名詞</b>：不寫 React、資料庫，交給 AI 決定</li>
+            <li><b>說清楚誰要做什麼</b>：個案能做什麼、管理者能做什麼</li>
+            <li><b>先講好範圍</b>：示範版、不用登入、資料存在瀏覽器</li>
+            <li><b>請它自己檢查</b>：做完打開確認，再用白話說明怎麼用</li>
+          </ul>
+          <a class="link" href="https://github.com/cxyfer/ai-usage-demo/blob/main/prompts/clinic-booking.md">完整提示詞與後續步驟 →</a>
         </div>
-      </article>
-      <article class="card">
-        <h3>gpt-6.1-terra</h3>
-        <div class="tool">Codex CLI</div>
-        <dl>
-          <dt>耗時</dt><dd>42 分 15 秒</dd>
-          <dt>自我檢查</dt><dd>有，用瀏覽器實測</dd>
-          <dt>獨立驗證</dt><dd>8 / 8 通過</dd>
-        </dl>
-        <div class="links">
-          <a class="btn" href="results/clinic-booking/gpt-6.1-terra/">開啟網站</a>
-          <a class="btn ghost" href="https://github.com/cxyfer/ai-usage-demo/blob/main/results/clinic-booking/gpt-6.1-terra.md">執行紀錄</a>
+        <figure class="chat">
+          <figcaption>你</figcaption>
+          <pre id="prompt">載入中…</pre>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 4. 成果 -->
+    <section class="slide" id="s-results" data-title="成果">
+      <div class="wrap">
+        <p class="kicker">03 · 成果</p>
+        <h2>三個 AI，三個網站</h2>
+        <p class="sub">每一個都是 AI 一次做完，沒有人工修改程式碼。點開就能試著預約。</p>
+        <div class="cards" id="cards"></div>
+      </div>
+    </section>
+
+    <!-- 5. 比較 -->
+    <section class="slide" id="s-compare" data-title="比較">
+      <div class="wrap">
+        <p class="kicker">04 · 比較</p>
+        <h2>同樣的需求，不同的做法</h2>
+        <div class="table-wrap">
+          <table>
+            <thead id="compare-head"></thead>
+            <tbody id="compare-body"></tbody>
+          </table>
         </div>
-      </article>
-      <article class="card pending">
-        <h3>gemini-3.8-flash</h3>
-        <div class="tool">Gemini CLI</div>
-        <dl><dt>狀態</dt><dd>待補</dd></dl>
-      </article>
-    </div>
+        <p class="sub small">獨立驗證：送出預約、同時段不能重複預約、後台確認／取消、取消後時段重新開放、特殊字元不被當成網頁內容、沒有 JS 錯誤。</p>
+      </div>
+    </section>
 
-    <h2>使用的提示詞</h2>
-    <details>
-      <summary>展開完整提示詞</summary>
-      <pre id="prompt">載入中…</pre>
-    </details>
-
-    <footer>
-      所有成果都是靜態展示頁面，沒有後端；心理師資料為虛構，Codex 版的照片為 AI 生成。<br>
-      <a href="https://github.com/cxyfer/ai-usage-demo">GitHub repo</a>
-    </footer>
+    <!-- 6. 結語 -->
+    <section class="slide end" id="s-end" data-title="結語">
+      <div class="wrap">
+        <p class="kicker">05 · 想自己試試？</p>
+        <h2>從一段話開始就好</h2>
+        <ul class="notes">
+          <li>先做「在自己電腦上能打開」的版本，再一步步加功能</li>
+          <li>想修改時，直接說「把主色改成淡藍色」就可以</li>
+          <li>真的要上線、處理個資時，請找懂資安的人一起檢查</li>
+        </ul>
+        <p class="fine">所有成果都是靜態展示頁面，沒有後端；心理師與診所資料皆為虛構，Codex 版的照片由 AI 生成。<br />同一個模型每次執行的結果都會不同，這裡只是一次的樣本。</p>
+        <a class="btn" href="https://github.com/cxyfer/ai-usage-demo">在 GitHub 查看</a>
+      </div>
+    </section>
   </main>
-  <script>
-    // 從 prompts/clinic-booking.md 取出主提示詞，避免兩邊內容不同步
-    fetch("prompts/clinic-booking.md")
-      .then((r) => r.text())
-      .then((md) => {
-        const match = md.match(/## ① 主提示詞\s*```\n([\s\S]*?)```/);
-        document.getElementById("prompt").textContent = match ? match[1].trim() : md;
-      })
-      .catch(() => {
-        document.getElementById("prompt").textContent = "請到 GitHub 查看 prompts/clinic-booking.md";
-      });
-  </script>
-  <script src="assets/demo-notice.js"></script>
+
+  <script src="assets/slides.js"></script>
 </body>
 </html>
