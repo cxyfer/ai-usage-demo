@@ -1,0 +1,8 @@
+把心理師的照片放在這個資料夾裡（建議正方形、JPG 或 PNG）。
+
+照片檔名要和 data.js 裡每位心理師的 photo 欄位一致，例如：
+  images/lin.jpg   → 林語晴
+  images/chen.jpg  → 陳柏安
+  images/huang.jpg → 黃育萱
+
+找不到照片時，網站會自動顯示姓名第一個字的圓形頭像。

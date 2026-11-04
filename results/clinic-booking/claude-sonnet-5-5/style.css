@@ -1,0 +1,243 @@
+/* 晴日心理諮商所 — 樣式 */
+:root {
+  --cream: #fbf6ee;
+  --cream-deep: #f5ecdd;
+  --paper: #ffffff;
+  --ink: #4a3f37;
+  --ink-soft: #7d6f64;
+  --line: #eadfce;
+  --sun: #e9a46a;        /* 暖橘，主色 */
+  --sun-deep: #c97f43;   /* 文字/按鈕用的深一點的橘，確保對比 */
+  --sage: #7f9d8a;
+  --sage-soft: #e5eee7;
+  --rose: #b4584a;
+  --rose-soft: #f8e6e1;
+  --radius: 18px;
+  --shadow: 0 6px 24px rgba(120, 90, 60, 0.08);
+  --font: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Heiti TC", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.75;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+[hidden] { display: none !important; }
+h1, h2, h3 { line-height: 1.4; margin: 0; letter-spacing: .02em; }
+p { margin: 0; }
+a { color: var(--sun-deep); }
+:focus-visible { outline: 3px solid var(--sage); outline-offset: 2px; border-radius: 6px; }
+
+/* ---------- Header / Footer ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px max(16px, calc((100vw - 1040px) / 2));
+  background: rgba(251, 246, 238, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 18px; }
+.brand-mark { color: var(--sun); font-size: 24px; line-height: 1; }
+.site-nav { display: flex; align-items: center; gap: 4px; }
+.site-nav a { text-decoration: none; color: var(--ink-soft); padding: 8px 12px; border-radius: 999px; font-size: 15px; }
+.site-nav a:hover { background: var(--cream-deep); }
+.site-nav .nav-cta { background: var(--sun-deep); color: #fff; font-weight: 600; }
+.site-nav .nav-cta:hover { background: #b46d36; }
+@media (max-width: 420px) { .site-nav a:not(.nav-cta) { display: none; } }
+
+.site-footer { text-align: center; padding: 32px 16px 40px; color: var(--ink-soft); font-size: 14px; border-top: 1px solid var(--line); }
+.admin-link { color: var(--ink-soft); font-size: 13px; }
+
+/* ---------- Layout ---------- */
+.section { padding: 56px max(18px, calc((100vw - 1040px) / 2)); }
+.section-alt { background: var(--cream-deep); }
+.section h2 { font-size: 26px; margin-bottom: 8px; }
+.section-lead { color: var(--ink-soft); margin-bottom: 28px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 64px 20px 56px;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(233, 164, 106, .28), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(127, 157, 138, .22), transparent 45%),
+    var(--cream);
+}
+.hero-eyebrow { color: var(--sage); font-weight: 600; letter-spacing: .15em; font-size: 14px; margin-bottom: 12px; }
+.hero h1 { font-size: clamp(28px, 6vw, 44px); margin-bottom: 16px; }
+.hero-text { color: var(--ink-soft); max-width: 30em; margin: 0 auto 28px; font-size: 17px; }
+.br-sm { display: none; }
+@media (max-width: 560px) { .br-sm { display: inline; } }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 48px; padding: 10px 24px;
+  border-radius: 999px; border: 2px solid transparent;
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s, transform .1s;
+}
+.btn:active { transform: scale(.98); }
+.btn-primary { background: var(--sun-deep); color: #fff; }
+.btn-primary:hover { background: #b46d36; }
+.btn-outline { background: transparent; color: var(--sun-deep); border-color: var(--sun-deep); }
+.btn-outline:hover { background: #fdf0e3; }
+.btn-selected { background: var(--sage); color: #fff; }
+.btn-ghost { background: transparent; color: var(--ink-soft); border-color: var(--line); }
+.btn-ghost:hover { background: var(--cream-deep); }
+.btn-danger { background: transparent; color: var(--rose); border-color: var(--rose); }
+.btn-danger:hover { background: var(--rose-soft); }
+.btn-sm { min-height: 40px; padding: 6px 18px; font-size: 15px; }
+.btn-block { width: 100%; font-size: 17px; min-height: 54px; }
+
+/* ---------- 心理師卡片 ---------- */
+.therapist-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.card {
+  background: var(--paper); border: 2px solid transparent; border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 28px 22px 24px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;
+}
+.card.is-selected { border-color: var(--sage); }
+.therapist h3 { font-size: 20px; }
+.title { display: inline-block; margin-left: 8px; font-size: 14px; font-weight: 400; color: var(--ink-soft); }
+.tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.tags li { background: var(--sage-soft); color: #4b6b58; padding: 2px 12px; border-radius: 999px; font-size: 14px; }
+.intro { color: var(--ink-soft); font-size: 15px; flex: 1; }
+.therapist .btn { width: 100%; }
+
+.avatar {
+  position: relative; overflow: hidden; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f6d9b8, #e5eee7);
+  color: var(--sun-deep); font-weight: 700;
+}
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.avatar-lg { width: 120px; height: 120px; font-size: 44px; border: 4px solid #fff; box-shadow: var(--shadow); }
+.avatar-sm { width: 48px; height: 48px; font-size: 20px; }
+
+/* ---------- 預約表單 ---------- */
+#booking-form { max-width: 720px; margin: 0 auto; }
+.step { border: 0; padding: 0; margin: 0 0 26px; min-width: 0; }
+.step legend { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; margin-bottom: 12px; padding: 0; }
+.step-no { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--sun-deep); color: #fff; font-size: 14px; }
+.hint { color: var(--ink-soft); font-size: 15px; background: rgba(255,255,255,.6); border: 1px dashed var(--line); border-radius: 12px; padding: 14px 16px; width: 100%; }
+
+.selected-therapist { display: flex; align-items: center; gap: 12px; background: var(--paper); border-radius: 14px; padding: 10px 16px; }
+.selected-therapist:has(.hint) { background: none; padding: 0; }
+.link-change { margin-left: auto; font-size: 14px; }
+
+.chip-row { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 10px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+.chip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
+.chip { position: relative; cursor: pointer; flex: none; scroll-snap-align: start; }
+.chip-grid .chip { flex: 1; }
+.chip input, .room input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: inherit; }
+.chip-body {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-width: 76px; min-height: 76px; padding: 8px 12px;
+  background: var(--paper); border: 2px solid var(--line); border-radius: 14px;
+  line-height: 1.3; transition: border-color .15s, background .15s;
+}
+.chip-grid .chip-body { min-height: 62px; }
+.chip:hover .chip-body { border-color: var(--sun); }
+.chip input:checked + .chip-body { background: var(--sun-deep); border-color: var(--sun-deep); color: #fff; }
+.chip input:focus-visible + .chip-body, .room input:focus-visible + .room-body { outline: 3px solid var(--sage); outline-offset: 2px; }
+.c-top { font-size: 13px; opacity: .8; }
+.c-main { font-size: 18px; font-weight: 700; }
+.c-sub { font-size: 12px; min-height: 1em; opacity: .85; }
+.chip.is-disabled { cursor: not-allowed; }
+.chip.is-disabled .chip-body { background: #f1ebe1; border-color: transparent; color: #a99d91; text-decoration: none; }
+.chip.is-disabled .c-main { text-decoration: line-through; }
+.chip.is-disabled:hover .chip-body { border-color: transparent; }
+
+.room-grid { display: grid; gap: 10px; }
+.room { position: relative; cursor: pointer; display: block; }
+.room-body {
+  display: flex; flex-direction: column; gap: 2px;
+  background: var(--paper); border: 2px solid var(--line); border-radius: 14px; padding: 12px 16px;
+  min-height: 64px; justify-content: center;
+}
+.room:hover .room-body { border-color: var(--sun); }
+.room input:checked + .room-body { border-color: var(--sun-deep); background: #fdf0e3; box-shadow: inset 0 0 0 1px var(--sun-deep); }
+.room-body small { color: var(--ink-soft); font-size: 14px; }
+.room-body em { font-style: normal; font-weight: 400; font-size: 13px; color: var(--rose); margin-left: 8px; }
+.room.is-disabled { cursor: not-allowed; }
+.room.is-disabled .room-body { background: #f1ebe1; border-color: transparent; color: #a99d91; }
+.room.is-disabled:hover .room-body { border-color: transparent; }
+.room.is-disabled small { color: #a99d91; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.field input {
+  width: 100%; min-height: 50px; padding: 10px 14px;
+  font: inherit; font-size: 16px; /* 16px 可避免 iOS 聚焦時自動放大 */
+  color: var(--ink); background: var(--paper);
+  border: 2px solid var(--line); border-radius: 12px;
+}
+.field input:focus { outline: none; border-color: var(--sage); box-shadow: 0 0 0 3px rgba(127,157,138,.25); }
+
+.form-error { background: var(--rose-soft); color: #8e3a2d; border-radius: 12px; padding: 12px 16px; margin-bottom: 14px; font-weight: 600; }
+.summary-line { color: var(--sage); font-weight: 600; margin-bottom: 14px; min-height: 0; }
+.summary-line:empty { display: none; }
+.fine-print { color: var(--ink-soft); font-size: 14px; text-align: center; margin-top: 12px; }
+
+/* ---------- 預約完成 ---------- */
+.done-card {
+  max-width: 520px; margin: 0 auto; background: var(--paper); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 32px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.done-card:focus { outline: none; }
+.done-icon { width: 60px; height: 60px; border-radius: 50%; background: var(--sage); color: #fff; font-size: 32px; display: grid; place-items: center; }
+.done-card h3 { font-size: 22px; }
+.done-card p { color: var(--ink-soft); }
+.done-info { width: 100%; margin: 4px 0; text-align: left; background: var(--cream); border-radius: 14px; padding: 12px 18px; }
+.done-info div { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+.done-info div:last-child { border: 0; }
+.done-info dt { color: var(--ink-soft); }
+.done-info dd { margin: 0; font-weight: 600; text-align: right; }
+
+/* ---------- 後台 ---------- */
+.admin { max-width: 1040px; margin: 0 auto; padding-left: 18px; padding-right: 18px; }
+.admin-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.admin-head h1 { font-size: 26px; }
+.demo-note { color: var(--ink-soft); font-size: 14px; margin-bottom: 20px; }
+.tabs { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 18px; padding-bottom: 4px; }
+.tab {
+  flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 16px;
+  font: inherit; font-weight: 600; color: var(--ink-soft); background: var(--paper);
+  border: 2px solid var(--line); border-radius: 999px; cursor: pointer;
+}
+.tab.is-active { background: var(--ink); border-color: var(--ink); color: #fff; }
+.tab-n { background: var(--cream-deep); color: var(--ink); border-radius: 999px; min-width: 24px; padding: 0 8px; font-size: 13px; text-align: center; }
+.tab.is-active .tab-n { background: rgba(255,255,255,.25); color: #fff; }
+
+.admin-list { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.booking { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; border-left: 6px solid var(--sun); display: flex; flex-direction: column; gap: 12px; }
+.booking.status-confirmed { border-left-color: var(--sage); }
+.booking.status-cancelled { border-left-color: #c9bfb3; opacity: .72; }
+.booking-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.booking-when { font-weight: 700; font-size: 17px; }
+.badge { flex: none; padding: 2px 12px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+.badge-pending { background: #fdebd5; color: #9a5a1f; }
+.badge-confirmed { background: var(--sage-soft); color: #3f6450; }
+.badge-cancelled { background: #eee8df; color: #7d6f64; }
+.booking-info { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+.booking-info dt { color: var(--ink-soft); font-size: 13px; }
+.booking-info dd { margin: 0; font-weight: 600; word-break: break-all; }
+.booking-actions { display: flex; gap: 10px; }
+.booking-actions .btn { flex: 1; }
+.empty { grid-column: 1 / -1; text-align: center; color: var(--ink-soft); background: var(--paper); border: 1px dashed var(--line); border-radius: var(--radius); padding: 40px 16px; }
+
+@media (max-width: 560px) {
+  .section { padding-top: 44px; padding-bottom: 44px; }
+  .section h2 { font-size: 23px; }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FBF6EE">
+  <title>晴日心理諮商所｜線上預約</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="#/" aria-label="晴日心理諮商所 首頁">
+      <span class="brand-mark" aria-hidden="true">☀</span>
+      <span class="brand-name" id="brand-name">晴日心理諮商所</span>
+    </a>
+    <nav class="site-nav" aria-label="主選單">
+      <a href="#therapists" class="nav-book">認識心理師</a>
+      <a href="#booking" class="nav-book nav-cta">線上預約</a>
+    </nav>
+  </header>
+
+  <!-- ====================== 預約頁（個案看到的） ====================== -->
+  <main id="view-book">
+
+    <section class="hero">
+      <p class="hero-eyebrow">心理諮商・線上預約</p>
+      <h1>慢慢來，<br class="br-sm">你不需要一個人撐著</h1>
+      <p class="hero-text" id="hero-slogan"></p>
+      <a class="btn btn-primary" href="#therapists">開始預約</a>
+    </section>
+
+    <section class="section" id="therapists" aria-labelledby="h-therapists">
+      <h2 id="h-therapists">認識我們的心理師</h2>
+      <p class="section-lead">挑一位讓你覺得安心的心理師，點「預約這位心理師」就能往下選時間。</p>
+      <div class="therapist-grid" id="therapist-list"></div>
+    </section>
+
+    <section class="section section-alt" id="booking" aria-labelledby="h-booking">
+      <h2 id="h-booking">預約諮商</h2>
+
+      <div id="booking-form-wrap">
+        <form id="booking-form" novalidate autocomplete="on">
+
+          <fieldset class="step">
+            <legend><span class="step-no">1</span>心理師</legend>
+            <div id="selected-therapist" class="selected-therapist"></div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-no">2</span>日期</legend>
+            <div id="date-list" class="chip-row" role="radiogroup" aria-label="選擇日期"></div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-no">3</span>時間</legend>
+            <div id="time-list" class="chip-grid" role="radiogroup" aria-label="選擇時間"></div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-no">4</span>諮商室</legend>
+            <div id="room-list" class="room-grid" role="radiogroup" aria-label="選擇諮商室"></div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend><span class="step-no">5</span>聯絡資料</legend>
+            <div class="field">
+              <label for="f-name">姓名（或希望被稱呼的名字）</label>
+              <input id="f-name" name="name" type="text" maxlength="20" autocomplete="name" placeholder="例如：小晴">
+            </div>
+            <div class="field">
+              <label for="f-phone">手機號碼</label>
+              <input id="f-phone" name="phone" type="tel" inputmode="tel" maxlength="20" autocomplete="tel" placeholder="例如：0912-345-678">
+            </div>
+          </fieldset>
+
+          <div id="form-error" class="form-error" role="alert" hidden></div>
+          <div id="summary-line" class="summary-line" aria-live="polite"></div>
+
+          <button type="submit" class="btn btn-primary btn-block">送出預約</button>
+          <p class="fine-print">送出後狀態為「待確認」，診所確認後預約才算成立，並會以電話與你聯繫。</p>
+        </form>
+      </div>
+
+      <div id="booking-done" class="done-card" hidden></div>
+    </section>
+
+  </main>
+
+  <!-- ====================== 管理後台 ====================== -->
+  <main id="view-admin" hidden>
+    <section class="section admin">
+      <div class="admin-head">
+        <h1>預約管理</h1>
+        <a class="btn btn-ghost" href="#/">← 回到預約頁</a>
+      </div>
+      <p class="demo-note">示範版：不需登入，資料只存在這台電腦、這個瀏覽器裡。</p>
+      <div id="storage-warning" class="form-error" hidden>
+        目前瀏覽器無法儲存資料（可能是無痕模式），重新整理後預約會消失。
+      </div>
+
+      <div class="tabs" id="admin-tabs" role="tablist" aria-label="依狀態篩選"></div>
+      <div id="admin-list" class="admin-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p id="footer-info"></p>
+    <p><a href="#/admin" class="admin-link">管理者入口</a></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

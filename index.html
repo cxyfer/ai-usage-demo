@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Usage Demo：同一段提示詞，不同模型做出的網站</title>
+  <style>
+    body {
+      margin: 0; background: #f7f5f0; color: #2f2c28;
+      font: 16px/1.7 system-ui, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    }
+    main { max-width: 960px; margin: 0 auto; padding: 48px 20px 80px; }
+    h1 { font-size: 1.9rem; margin: 0 0 8px; }
+    .lead { color: #6b655c; margin: 0 0 32px; }
+    h2 { font-size: 1.25rem; margin: 40px 0 16px; }
+    .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .card {
+      background: #fff; border-radius: 16px; padding: 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .05); display: flex; flex-direction: column;
+    }
+    .card h3 { margin: 0 0 4px; font-size: 1.1rem; }
+    .card .tool { color: #8a847c; font-size: .9rem; margin-bottom: 12px; }
+    .card dl { margin: 0 0 16px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: .92rem; }
+    .card dt { color: #8a847c; }
+    .card dd { margin: 0; }
+    .card .links { margin-top: auto; display: flex; gap: 10px; }
+    .btn {
+      display: inline-block; padding: 8px 16px; border-radius: 99px; text-decoration: none;
+      background: #4f7a5a; color: #fff; font-size: .92rem;
+    }
+    .btn.ghost { background: transparent; color: #4f7a5a; border: 1px solid #4f7a5a; }
+    .card.pending { opacity: .6; }
+    details { background: #fff; border-radius: 16px; padding: 16px 20px; }
+    summary { cursor: pointer; font-weight: bold; }
+    pre { white-space: pre-wrap; background: #f7f5f0; padding: 16px; border-radius: 12px; font-size: .9rem; }
+    footer { margin-top: 48px; color: #8a847c; font-size: .9rem; }
+    footer a { color: inherit; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>同一段提示詞，不同 AI 做出的網站</h1>
+    <p class="lead">用一般人說話的方式描述需求，交給不同的 AI coding 工具，看看它們各自做出什麼。<br>範例：心理諮商診所的線上預約網站。</p>
+
+    <h2>成果比較</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>claude-sonnet-5-5</h3>
+        <div class="tool">Claude Code</div>
+        <dl>
+          <dt>耗時</dt><dd>3 分 21 秒</dd>
+          <dt>自我檢查</dt><dd>無（沒有執行權限）</dd>
+          <dt>獨立驗證</dt><dd>8 / 8 通過</dd>
+        </dl>
+        <div class="links">
+          <a class="btn" href="results/clinic-booking/claude-sonnet-5-5/">開啟網站</a>
+          <a class="btn ghost" href="https://github.com/cxyfer/ai-usage-demo/blob/main/results/clinic-booking/claude-sonnet-5-5.md">執行紀錄</a>
+        </div>
+      </article>
+      <article class="card">
+        <h3>gpt-6.1-terra</h3>
+        <div class="tool">Codex CLI</div>
+        <dl>
+          <dt>耗時</dt><dd>42 分 15 秒</dd>
+          <dt>自我檢查</dt><dd>有，用瀏覽器實測</dd>
+          <dt>獨立驗證</dt><dd>8 / 8 通過</dd>
+        </dl>
+        <div class="links">
+          <a class="btn" href="results/clinic-booking/gpt-6.1-terra/">開啟網站</a>
+          <a class="btn ghost" href="https://github.com/cxyfer/ai-usage-demo/blob/main/results/clinic-booking/gpt-6.1-terra.md">執行紀錄</a>
+        </div>
+      </article>
+      <article class="card pending">
+        <h3>gemini-3.8-flash</h3>
+        <div class="tool">Gemini CLI</div>
+        <dl><dt>狀態</dt><dd>待補</dd></dl>
+      </article>
+    </div>
+
+    <h2>使用的提示詞</h2>
+    <details>
+      <summary>展開完整提示詞</summary>
+      <pre id="prompt">載入中…</pre>
+    </details>
+
+    <footer>
+      所有成果都是靜態展示頁面，沒有後端；心理師資料為虛構，Codex 版的照片為 AI 生成。<br>
+      <a href="https://github.com/cxyfer/ai-usage-demo">GitHub repo</a>
+    </footer>
+  </main>
+  <script>
+    // 從 prompts/clinic-booking.md 取出主提示詞，避免兩邊內容不同步
+    fetch("prompts/clinic-booking.md")
+      .then((r) => r.text())
+      .then((md) => {
+        const match = md.match(/## ① 主提示詞\s*```\n([\s\S]*?)```/);
+        document.getElementById("prompt").textContent = match ? match[1].trim() : md;
+      })
+      .catch(() => {
+        document.getElementById("prompt").textContent = "請到 GitHub 查看 prompts/clinic-booking.md";
+      });
+  </script>
+</body>
+</html>
